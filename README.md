@@ -71,16 +71,6 @@ you'll need to pass in a comma seperated list for example:
 
 **Note** Direct input will override the config and package json cacehebust paramaters.
 
-`cachebust --help` for more options:
-
-Options:
-
-    -V, --version         output the version number
-    -s, --source [files]  source file(s) to be fingerprinted; comma seperated file list
-    -t, --target [files]  target file(s), template files that need the fingerprinted asset file names; comma seperated file list
-    -r, --restore         copies the backup file(s) back to the original; backup file(s) are removed.
-    -h, --help            output usage information
-
 This will fingerprint the following files:
 
     - path/to/source/css/style.css
@@ -92,4 +82,18 @@ This will then update your template "target" file with the updated filenames:
 
 To restore these you'll have to again pass the target and source files:
 
-`cachebust restore source=path/to/source/css/style.css,path/to/source/js/script.js target=path/to/target/template.html`
+`cachebust -r -s path/to/source/css/style.css,path/to/source/js/script.js -t path/to/target/template.html`
+
+### CLI Options
+
+You can run `cachebust --help` for more options.
+
+    -V, --version         output the version number
+    -s, --source [files]  source file(s) to be fingerprinted; comma seperated file list
+    -t, --target [files]  target file(s), template files that need the fingerprinted asset file names; comma seperated file list
+    -r, --restore         copies the backup file(s) back to the original; backup file(s) are removed.
+    -h, --help            output usage information
+
+Ensure that the file lists for `-s` or `--source` and `-t` and `--target` are comma seperated.
+
+You may also specify a single file, without a comma.
