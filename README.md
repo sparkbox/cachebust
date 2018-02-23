@@ -1,7 +1,8 @@
 # cachebust
 
 Straight forward asset fingerprinting "cachebuster" for production applications.
-Requires **Node 8.5.0** and higher
+
+Requires **Node 8.5.0** or higher.
 
 ## Using cachebust
 
@@ -10,15 +11,15 @@ Installing
 `npm install cachebust`
 
 The recommended way to use `cachebust` is to either add your
-input data in `package.json` or in a `.cachebust.config` file. [(see config)](#config).
+input data in `package.json` or in a `.cachebust.config` file [(see config)](#config).
 
 
 ## Running
 
-`cachebust`: will create your fingerprinted assests & replace those names inside the
-target "template files" as specified in the package.json file or the .cachebust.config file.
+`cachebust`: will create your fingerprinted assests & update fingerprinted "source file" names inside the
+target "template file(s)" as specified in the package.json file or the .cachebust.config file.
 
-If you need to restore your template files, you can run: `cachebust restore`
+If you need to restore your template files, you can run: `cachebust --restore`
 
 ## Config
 
@@ -94,4 +95,12 @@ You can run `cachebust --help` for more options.
 
 Ensure that the file lists for `-s` or `--source` and `-t` and `--target` are comma seperated.
 
+`-s dir/path/file.ext,dir/otherpath/otherfile.ext` etc.
+
+You can pass in one file (no comma, or mutliple files for **both** source and target).
+
 You may also specify a single file, without a comma.
+
+## License
+
+The MIT License (MIT)
