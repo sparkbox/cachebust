@@ -2,6 +2,10 @@
 
 Straight forward asset fingerprinting "cachebuster" for production applications.
 
+Required:
+    - Node 8.5.0 and higher
+
+
 ## Using cachebust
 
 Installing
@@ -43,7 +47,6 @@ For example:
 ### Config File
 
 Also you may create a config file in the root of the project directory called `cachebust.config.json`
-This is the next best option and
 
 This will be a JSON object like the following:
 

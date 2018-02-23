@@ -38,7 +38,7 @@ function extractParam(string) {
 
 if (sourceFiles.length < 1 || targetFiles.length < 1) {
   if (fs.existsSync(APPDIR + 'package.json')) {
-    config = require(APPDIR + './package.json');
+    config = JSON.parse(fs.readFileSync(APPDIR + './package.json', 'utf8'));
   }
   if (config.cachebust) {
     if (sourceFiles.length < 1) {
@@ -53,7 +53,7 @@ if (sourceFiles.length < 1 || targetFiles.length < 1) {
 if (sourceFiles.length < 1 || targetFiles.length < 1) {
   let config = {};
   if (fs.existsSync(APPDIR + 'cachebust.config.json')) {
-    config = require(APPDIR + 'cachebust.config.json');
+    config = JSON.parse(fs.readFileSync(APPDIR + 'cachebust.config.json', 'utf8'));
   }
 
   if (sourceFiles.length < 1) {
