@@ -75,11 +75,11 @@ you'll need to pass in a comma seperated list for example:
 
 Options:
 
-  -V, --version         output the version number
-  -s, --source [files]  source file(s) to be fingerprinted; comma seperated file list
-  -t, --target [files]  target file(s), template files that need the fingerprinted asset file names; comma seperated file list
-  -r, --restore         copies the backup file(s) back to the original; backup file(s) are removed.
-  -h, --help            output usage information
+    -V, --version         output the version number
+    -s, --source [files]  source file(s) to be fingerprinted; comma seperated file list
+    -t, --target [files]  target file(s), template files that need the fingerprinted asset file names; comma seperated file list
+    -r, --restore         copies the backup file(s) back to the original; backup file(s) are removed.
+    -h, --help            output usage information
 
 This will fingerprint the following files:
 
