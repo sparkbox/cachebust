@@ -6,10 +6,12 @@ const path = require('path');
 const replace = require('replace-in-file');
 
 // List your files you want fingerprinted here..
-let files = [];
+let sourceFiles = [];
 
 // This is where the replacement will happen.
-let templateFiles = [];
+let targetFiles = [];
+
+const APPDIR = process.cwd() + '/';
 
 const args = process.argv.slice(2);
 let errors = false;
@@ -20,74 +22,70 @@ targetKey = 'target=';
 
 if (args.length > 0) {
   args.forEach(a => {
-    if (a.indexOf(sourceKey, 0)) {
-      files = extractParam(a, sourceKey);
+    if (a.indexOf(sourceKey) === 0) {
+      sourceFiles = extractParam(a);
     }
-    if (a.indexOf(targetKey, 0)) {
-      templateFiles = extractParam(a, targetKey);
+    if (a.indexOf(targetKey) === 0) {
+      targetFiles = extractParam(a);
     }
   });
 }
 
-function extractParam(string, key) {
+function extractParam(string) {
   let arr = string.split('=')[1];
   return arr.split(',');
 }
 
-let config = {};
-
-if (files.length < 1 || templateFiles.length < 1) {
-  if (fs.existsSync('.cachebust.json')) {
-    config = require('./.cachebust.json');
+if (sourceFiles.length < 1 || targetFiles.length < 1) {
+  if (fs.existsSync(APPDIR + 'package.json')) {
+    config = require(APPDIR + './package.json');
   }
-
-  if (files.length < 1) {
-    files = config.source || [];
-  }
-
-  if (templateFiles.length < 1) {
-    templateFiles = config.target || [];
+  if (config.cachebust) {
+    if (sourceFiles.length < 1) {
+      sourceFiles = config.cachebust.source || [];
+    }
+    if (targetFiles.length < 1) {
+      targetFiles = config.cachebust.target || [];
+    }
   }
 }
 
-if (files.length < 1 || templateFiles.length < 1) {
-  if (fs.existsSync('package.json')) {
-    config = require('./package.json');
+if (sourceFiles.length < 1 || targetFiles.length < 1) {
+  let config = {};
+  if (fs.existsSync(APPDIR + 'cachebust.config.json')) {
+    config = require(APPDIR + 'cachebust.config.json');
   }
 
-  if (files.length < 1) {
-    files = config.cachebust.source || [];
+  if (sourceFiles.length < 1) {
+    sourceFiles = config.source || [];
   }
 
-  if (templateFiles.length < 1) {
-    templateFiles = config.cachebust.target || [];
+  if (targetFiles.length < 1) {
+    targetFiles = config.target || [];
   }
 }
 
 // Finally
+if (args[0] !== 'restore') {
+  if (sourceFiles.length < 1) {
+    console.log('Please specify source files.');
+    errors = true;
+  }
 
-if (files.length < 1) {
-  console.log('Please specify asset files.');
-  errors = true;
-}
+  if (targetFiles.length < 1) {
+    console.log('Please specify target files.');
+    errors = true;
+  }
 
-if (templateFiles.length < 1) {
-  console.log('Please specify files.');
-  errors = true;
-}
-
-console.log('source', files);
-console.log('target', templateFiles);
-process.exit();
-
-if (errors) {
-  process.exit();
+  if (errors) {
+    process.exit();
+  }
 }
 
 // Check for previous cache bust. This should only be run once
 // on a staging or prodution environment.
 let cached = false;
-for (let file of templateFiles) {
+for (let file of targetFiles) {
   const backup = `${file}.cache-backup`;
 
   if (fs.existsSync(backup)) {
@@ -111,7 +109,7 @@ for (let file of templateFiles) {
 }
 
 if (!cached) {
-  cachebust(files);
+  cachebust(sourceFiles);
 }
 
 async function restore(file, backup) {
@@ -121,8 +119,8 @@ async function restore(file, backup) {
 }
 
 async function cachebust(files) {
-  let sourceFiles = [];
-  let targetFiles = [];
+  let from = [];
+  let to = [];
 
   for (let file of files) {
     const print = finger(file, { format: '{hash}.{ext}' });
@@ -132,15 +130,15 @@ async function cachebust(files) {
 
     console.log('fingerprinted:', file, target);
 
-    sourceFiles.push(path.basename(file));
-    targetFiles.push(path.basename(target));
+    from.push(path.basename(file));
+    to.push(path.basename(target));
   }
 
   if (targetFiles.length) {
     const changes = replace({
-      files: templateFiles,
-      from: sourceFiles,
-      to: targetFiles
+      files: targetFiles,
+      from: from,
+      to: to
     });
   } else {
     console.log('Failed to write cache files');
