@@ -13,37 +13,32 @@ input data in `package.json` or in a `cachebust.config.json` file. (see config).
 
 ## Running
 
-`cachebust`
-
-Will create your fingerprinted assests & replace those names inside the
+`cachebust`: will create your fingerprinted assests & replace those names inside the
 target "template files" as specified in the package.json file or the cachebust.config.json file.
 
-If you need to restore your template files, you can run:
-
-`cachebust restore`
+If you need to restore your template files, you can run: `cachebust restore`
 
 ## Config
 
 ### Package.json
 
-Create a key in your `package.json` file, with source/target keys.
+Create a key in your `package.json` file at the root level, with source/target keys.
 
 For example:
 
-    "main": "index.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "cachebust": {
-        "target": [
-            'path/to/source/css/style.css',
-            'path/to/source/js/script.js',
-        ],
-        "source": [
-            'path/to/target/template.html'
-        ]
+    {
+      ...
+      "cachebust": {
+          "target": [
+              'path/to/source/css/style.css',
+              'path/to/source/js/script.js',
+          ],
+          "source": [
+              'path/to/target/template.html'
+          ]
+      }
+      ...
     }
-    ...
 
 ### Config File
 
