@@ -30,11 +30,11 @@ For example:
       ...
       "cachebust": {
           "target": [
-              'path/to/source/css/style.css',
-              'path/to/source/js/script.js',
+              "path/to/source/css/style.css",
+              "path/to/source/js/script.js"
           ],
           "source": [
-              'path/to/target/template.html'
+              "path/to/target/template.html"
           ]
       }
       ...
@@ -50,11 +50,11 @@ This will be a JSON object like the following:
     {
       "cachebust": {
           "target": [
-              'path/to/source/css/style.css',
-              'path/to/source/js/script.js',
+              "path/to/source/css/style.css",
+              "path/to/source/js/script.js"
           ],
           "source": [
-              'path/to/target/template.html'
+              "path/to/target/template.html"
           ]
       }
     }
