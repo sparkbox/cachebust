@@ -12,13 +12,13 @@ Installing
 
 `npm install cachebust`
 
-This is the recommended way to use to use cachebust is to either add your
-input data in `package.json` or in a `cachebust.config.json` file. (see config).
+The recommended way to use `cachebust` is to either add your
+input data in `package.json` or in a `.cachebust.config` file. (see config).
 
 ## Running
 
 `cachebust`: will create your fingerprinted assests & replace those names inside the
-target "template files" as specified in the package.json file or the cachebust.config.json file.
+target "template files" as specified in the package.json file or the .cachebust.config file.
 
 If you need to restore your template files, you can run: `cachebust restore`
 
@@ -46,20 +46,18 @@ For example:
 
 ### Config File
 
-Also you may create a config file in the root of the project directory called `cachebust.config.json`
+Also you may create a config file in the root of the project directory called `.cachebust.config`
 
 This will be a JSON object like the following:
 
     {
-      "cachebust": {
-          "target": [
-              "path/to/source/css/style.css",
-              "path/to/source/js/script.js"
-          ],
-          "source": [
-              "path/to/target/template.html"
-          ]
-      }
+      "target": [
+          "path/to/source/css/style.css",
+          "path/to/source/js/script.js"
+      ],
+      "source": [
+          "path/to/target/template.html"
+      ]
     }
 
 ### Direct Input
