@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const finger = require('fingerprinting');
-const fs = require('fs-extra');
+const fs = require('fs');
 const path = require('path');
 const replace = require('replace-in-file');
 
@@ -101,7 +101,7 @@ for (let file of targetFiles) {
     }
   } else {
     if (!cached) {
-      fs.copy(file, backup, err => {
+      fs.copyFile(file, backup, err => {
         if (err) return console.error(err);
       });
     }
@@ -113,8 +113,8 @@ if (!cached) {
 }
 
 async function restore(file, backup) {
-  await fs.unlink(file);
-  await fs.move(backup, file);
+  await fs.unlinkSync(file);
+  await fs.renameSync(backup, file);
   console.log('Backup restored: ', file);
 }
 
@@ -126,7 +126,7 @@ async function cachebust(files) {
     const print = finger(file, { format: '{hash}.{ext}' });
     const target = `${path.dirname(file)}/${print.file}`;
 
-    await fs.copy(file, target);
+    await fs.copyFileSync(file, target);
 
     console.log('fingerprinted:', file, target);
 
@@ -142,7 +142,7 @@ async function cachebust(files) {
     });
   } else {
     console.log('Failed to write cache files');
-    fs.unlink(backup);
+    fs.unlinkSync(backup);
     process.exit();
   }
 }
