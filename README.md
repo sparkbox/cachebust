@@ -51,13 +51,15 @@ Also you may create a config file in the root of the project directory called `.
 This will be a JSON object like the following:
 
     {
-      "target": [
-          "path/to/source/css/style.css",
-          "path/to/source/js/script.js"
-      ],
-      "source": [
-          "path/to/target/template.html"
-      ]
+    "cachebust": {
+        "target": [
+            "path/to/source/css/style.css",
+            "path/to/source/js/script.js"
+        ],
+        "source": [
+            "path/to/target/template.html"
+        ]
+      }
     }
 
 ### Direct Input
@@ -65,10 +67,19 @@ This will be a JSON object like the following:
 cachebust allows you to directly specify the **source** and the **target**
 you'll need to pass in a comma seperated list for example:
 
-`cachebust source=path/to/source/css/style.css,path/to/source/js/script.js target=path/to/target/template.html`
+`cachebust -s path/to/source/css/style.css,path/to/source/js/script.js -t path/to/target/template.html`
 
 **Note** Direct input will override the config and package json cacehebust paramaters.
 
+`cachebust --help` for more options:
+
+Options:
+
+  -V, --version         output the version number
+  -s, --source [files]  source file(s) to be fingerprinted; comma seperated file list
+  -t, --target [files]  target file(s), template files that need the fingerprinted asset file names; comma seperated file list
+  -r, --restore         copies the backup file(s) back to the original; backup file(s) are removed.
+  -h, --help            output usage information
 
 This will fingerprint the following files:
 

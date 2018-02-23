@@ -9,15 +9,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/sparkbox/cachebust.git"
+    "type": "git",
+    "url": "https://github.com/sparkbox/cachebust.git"
   },
-  "engines" : {
-    "node" : "~8.5.0"
+  "engines": {
+    "node": "~8.5.0"
   },
   "author": "Patrick Simpson",
   "license": "MIT",
   "dependencies": {
+    "commander": "^2.14.1",
     "fingerprinting": "^1.0.1",
     "replace-in-file": "^3.1.1"
   }
