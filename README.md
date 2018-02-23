@@ -1,10 +1,7 @@
 # cachebust
 
 Straight forward asset fingerprinting "cachebuster" for production applications.
-
-Required:
-    - Node 8.5.0 and higher
-
+Requires **Node 8.5.0** and higher
 
 ## Using cachebust
 
@@ -13,7 +10,8 @@ Installing
 `npm install cachebust`
 
 The recommended way to use `cachebust` is to either add your
-input data in `package.json` or in a `.cachebust.config` file. (see config).
+input data in `package.json` or in a `.cachebust.config` file. [(see config)](#config).
+
 
 ## Running
 
