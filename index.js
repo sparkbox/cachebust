@@ -56,22 +56,24 @@ if (sourceFiles.length < 1 || targetFiles.length < 1) {
 }
 
 // Finally
-if (program.restore) {
-  if (sourceFiles.length < 1) {
-    console.log('Please specify source files.');
-    errors = true;
-  }
+if (sourceFiles.length < 1) {
+  console.log('Please specify valid source files.', );
+  errors = true;
+}
 
-  if (targetFiles.length < 1) {
-    console.log('Please specify target files.');
-    errors = true;
-  }
+if (targetFiles.length < 1) {
+  console.log('Please specify target files.');
+  errors = true;
+}
 
-  if (errors) {
-    process.exit();
-  }
+if (errors) {
+  process.exit();
 }
 
 if(!backup(targetFiles, program.restore)) {
-  cachebust(sourceFiles, targetFiles);
+  if (!program.restore) {
+    cachebust(sourceFiles, targetFiles);
+  } else {
+    console.log('No operations performed. No prior cachebust to restore.');
+  }
 }
