@@ -8,7 +8,7 @@ Requires **Node 8.5.0** or higher.
 
 Installing
 
-`npm install cachebust`
+`npm install @sparkbox/cachebust`
 
 The recommended way to use `cachebust` is to either add your
 input data in `package.json` or in a `.cachebust.config` file [(see config)](#config).

@@ -1,5 +1,5 @@
 {
-  "name": "cachebust",
+  "name": "@sparkbox/cachebust",
   "version": "0.1.0",
   "description": "A simple cache buster",
   "bin": {
