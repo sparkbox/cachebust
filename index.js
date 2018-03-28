@@ -57,7 +57,7 @@ if (sourceFiles.length < 1 || targetFiles.length < 1) {
 
 // Finally
 if (sourceFiles.length < 1) {
-  console.log('Please specify valid source files.', );
+  console.log('Please specify valid source files.');
   errors = true;
 }
 
