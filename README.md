@@ -45,7 +45,7 @@ For example:
 
 ### Config File
 
-**Update**: [Globbing](https://github.com/sindresorhus/globby) is allowed for `target` files. So `target: ["path/to/target/**/*.html"] is allowed.
+**Update**: [Globbing](https://github.com/sindresorhus/globby) is allowed for `target` files. So `"target": ["path/to/target/**/*.html"]` is allowed.
 
 Also you may create a config file in the root of the project directory called `.cachebust.config`
 
