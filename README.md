@@ -45,6 +45,8 @@ For example:
 
 ### Config File
 
+**Update**: [Globbing](https://github.com/sindresorhus/globby) is allowed for `target` files. So `target: ["path/to/target/**/*.html"] is allowed.
+
 Also you may create a config file in the root of the project directory called `.cachebust.config`
 
 This will be a JSON object like the following:
@@ -56,7 +58,7 @@ This will be a JSON object like the following:
             "path/to/source/js/script.js"
         ],
         "target": [
-            "path/to/target/template.html"
+            "path/to/target/**/*.html"
         ]
       }
     }
