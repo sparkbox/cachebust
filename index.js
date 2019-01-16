@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const path = require('path');
 const cachebust = require('./lib/cachebust');
 const backup = require('./lib/backupCachebust');
-const restore = require('./lib/restore');
 const program = require('commander');
+const glob = require('globby');
 
 program
   .version('0.1.0')
@@ -70,10 +69,16 @@ if (errors) {
   process.exit();
 }
 
-if(!backup(targetFiles, program.restore)) {
-  if (!program.restore) {
-    cachebust(sourceFiles, targetFiles);
+if(program.restore) {
+  backup.restore();
+} else {
+
+  if(!backup.check()) {
+      cachebust(sourceFiles, glob.sync(targetFiles));
   } else {
-    console.log('No operations performed. No prior cachebust to restore.');
+    console.log('Previous cache detected!');
+    console.log('Restore the backup file(s) run: `cachebust --restore`');
+    process.exit();
   }
+
 }
