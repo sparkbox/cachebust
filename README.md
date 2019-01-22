@@ -23,6 +23,8 @@ If you need to restore your template files, you can run: `cachebust --restore`
 
 ## Config
 
+**Update**: [Globbing](https://github.com/sindresorhus/globby) is allowed for `target` files. So `"target": ["path/to/target/**/*.html"]` is allowed.
+
 ### Package.json
 
 Create a key in your `package.json` file at the root level, with source/target keys.
@@ -44,8 +46,6 @@ For example:
     }
 
 ### Config File
-
-**Update**: [Globbing](https://github.com/sindresorhus/globby) is allowed for `target` files. So `"target": ["path/to/target/**/*.html"]` is allowed.
 
 Also you may create a config file in the root of the project directory called `.cachebust.config`
 
