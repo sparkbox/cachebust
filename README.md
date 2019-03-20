@@ -102,6 +102,7 @@ You can run `cachebust --help` for more options.
     -s, --source [files]  source file(s) to be fingerprinted; comma seperated file list
     -t, --target [files]  target file(s), template files that need the fingerprinted asset file names; comma seperated file list
     -r, --restore         copies the backup file(s) back to the original; backup file(s) are removed.
+    -q, --quiet',         All normal output is surpressed. Some errors will still be generated.
     -n, --no-backup       Warning: this will not generate the manifest file. This is only to be used on PRODUCTION servers or under version control. This is descructive!
     -h, --help            output usage information
 

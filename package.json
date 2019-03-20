@@ -1,6 +1,6 @@
 {
   "name": "@sparkbox/cachebust",
-  "version": "0.2.3",
+  "version": "0.2.5",
   "description": "A simple cache buster",
   "bin": {
     "cachebust": "index.js"
