@@ -11,6 +11,7 @@ program
   .option('-s, --source [files]', 'source file(s) to be fingerprinted; comma seperated file list')
   .option('-t, --target [files]', 'target file(s), template files that need the fingerprinted asset file names; comma seperated file list')
   .option('-r, --restore', 'copies the backup file(s) back to the original; backup file(s) are removed.')
+  .option('-n, --nomanifest', 'does not generate manifest for use on files that are source-controlled or in CI environments.')
   .parse(process.argv)
 
 let sourceFiles = [];
@@ -72,9 +73,8 @@ if (errors) {
 if(program.restore) {
   backup.restore();
 } else {
-
   if(!backup.check()) {
-      cachebust(sourceFiles, glob.sync(targetFiles));
+      cachebust(sourceFiles, glob.sync(targetFiles), program.nomanifest);
   } else {
     console.log('Previous cache detected!');
     console.log('Restore the backup file(s) run: `cachebust --restore`');

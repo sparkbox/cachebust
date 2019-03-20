@@ -93,6 +93,7 @@ You can run `cachebust --help` for more options.
     -s, --source [files]  source file(s) to be fingerprinted; comma seperated file list
     -t, --target [files]  target file(s), template files that need the fingerprinted asset file names; comma seperated file list
     -r, --restore         copies the backup file(s) back to the original; backup file(s) are removed.
+    -n, --nomanifest      does not generate manifest for use on files that are source-controlled or in CI environments
     -h, --help            output usage information
 
 Ensure that the file lists for `-s` or `--source` and `-t` and `--target` are comma seperated.
