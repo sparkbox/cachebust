@@ -7,7 +7,7 @@ const program = require('commander');
 const glob = require('globby');
 
 program
-  .version('0.2.5')
+  .version('0.3.0')
   .option('-s, --source [files]', 'source file(s) to be fingerprinted; comma seperated file list')
   .option('-t, --target [files]', 'target file(s), template files that need the fingerprinted asset file names; comma seperated file list')
   .option('-r, --restore', 'copies the backup file(s) back to the original; backup file(s) are removed.')
