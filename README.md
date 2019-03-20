@@ -23,7 +23,7 @@ If you need to restore your template files, you can run: `cachebust --restore`
 
 ## Config
 
-**Update**: [Globbing](https://github.com/sindresorhus/globby) is allowed for `target` files. So `"target": ["path/to/target/**/*.html"]` is allowed.
+[Globbing](https://github.com/sindresorhus/globby) is allowed for `target` files. So `"target": ["path/to/target/**/*.html"]` is allowed.
 
 ### Package.json
 
@@ -85,6 +85,15 @@ To restore these you'll have to again pass the target and source files:
 
 `cachebust -r -s path/to/source/css/style.css,path/to/source/js/script.js -t path/to/target/template.html`
 
+### Running on production
+
+** WARNING **
+If run this without a backup, it is descructive. It will not backup your files.
+
+Added a `-n` or `--no-backup` option to cachebust, this will no generate a manifest file. See https://github.com/sparkbox/cachebust/issues/9
+
+In some cases this is desired, say on a build server, or in a git versioned repo, there is no reason to keep a manifest since each deploys a copy of the original is retained from the source control.
+
 ### CLI Options
 
 You can run `cachebust --help` for more options.
@@ -93,6 +102,7 @@ You can run `cachebust --help` for more options.
     -s, --source [files]  source file(s) to be fingerprinted; comma seperated file list
     -t, --target [files]  target file(s), template files that need the fingerprinted asset file names; comma seperated file list
     -r, --restore         copies the backup file(s) back to the original; backup file(s) are removed.
+    -n, --no-backup       Warning: this will not generate the manifest file. This is only to be used on PRODUCTION servers or under version control. This is descructive!
     -h, --help            output usage information
 
 Ensure that the file lists for `-s` or `--source` and `-t` and `--target` are comma seperated.
