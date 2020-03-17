@@ -21,6 +21,6 @@
     "commander": "^2.14.1",
     "fingerprinting": "^1.0.1",
     "globby": "^9.0.0",
-    "replace-in-file": "^3.4.2"
+    "replace-in-file": "^3.4.4"
   }
 }
