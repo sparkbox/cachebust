@@ -80,7 +80,7 @@ if(program.restore) {
 } else {
 
   if(!backup.check()) {
-      cachebust(sourceFiles, glob.sync(targetFiles), program.backup);
+      cachebust(glob.sync(sourceFiles), glob.sync(targetFiles), program.backup);
   } else {
     console.log('Previous cache detected!');
     console.log('Restore the backup file(s) run: `cachebust --restore`');
